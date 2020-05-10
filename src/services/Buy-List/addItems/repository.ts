@@ -1,4 +1,4 @@
-import { IBuyList } from 'src/shared/model';
+import { IBuyList } from '../../../../shared/model';
 import { DBBucket } from '../../../../config/DbBucket';
 
 export class Repository {

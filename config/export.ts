@@ -4,7 +4,7 @@ import couchbase from 'couchbase';
 import dateformat from 'dateformat';
 import express from 'express';
 import nodemailer from 'nodemailer';
-import { CONSTANT } from '../src/shared/constant';
+import { CONSTANT } from '../shared/constant';
 
 const app = express();
 const niql = couchbase.N1qlQuery;

@@ -1,4 +1,4 @@
-import { IUser } from 'src/shared/model';
+import { IUser } from '../../../../shared/model';
 import { Repository } from './repository';
 
 export class Service {

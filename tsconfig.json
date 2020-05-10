@@ -33,6 +33,6 @@
       "@config/*": ["src/config/*"]
     }
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "shared/constant.ts"],
   "exclude": ["node_modules"]
 }

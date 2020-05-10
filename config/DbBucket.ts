@@ -1,5 +1,5 @@
 import { CouchbaseError, N1qlQuery } from 'couchbase';
-import { CONSTANT } from '../src/shared/constant';
+import { CONSTANT } from '../shared/constant';
 import { Connection } from './connection';
 import { niql } from './export';
 const KEY_VALUE_OPERATION_TIMEOUT = 10000;

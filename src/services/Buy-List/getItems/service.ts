@@ -1,4 +1,4 @@
-import { IBuyList } from 'src/shared/model';
+import { IBuyList } from '../../../../shared/model';
 import { Repository } from './repository';
 
 export class Service {

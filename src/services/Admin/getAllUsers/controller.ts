@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ApiHandler } from 'shared/api.interfaces';
-import { IUser } from 'src/shared/model';
+import { IUser } from '../../../../shared/model';
 import { app } from '../../../../config/export';
 import { ApiResponse } from '../../../../shared/api-response';
 import { HttpStatusCode } from '../../../../shared/http-status-codes';

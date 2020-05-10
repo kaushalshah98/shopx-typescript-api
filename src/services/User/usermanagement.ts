@@ -144,7 +144,7 @@
 // });
 
 // import { CouchbaseError } from 'couchbase';
-// import { IUser } from 'src/shared/model';
+// import { IUser } from '../../../../shared/model';
 // import { bucket } from '../../config/connection';
 // import { niql } from '../../config/export';
 // import { CONSTANT } from '../../shared/constant';

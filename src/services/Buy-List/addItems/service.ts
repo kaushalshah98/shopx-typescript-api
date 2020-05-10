@@ -1,5 +1,5 @@
 import { CouchbaseError } from 'couchbase';
-import { IBuyList, IListArray } from 'src/shared/model';
+import { IBuyList, IListArray } from '../../../../shared/model';
 import { Repository } from './repository';
 
 export class Service {
