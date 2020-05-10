@@ -8,6 +8,7 @@ import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
 export class Controller {
+  constructor(private service: Service) {}
 
   public getItems: ApiHandler = app.get(
     '/getbuylistitems/:userid',
@@ -27,5 +28,4 @@ export class Controller {
       }
     }
   );
-  constructor(private service: Service) {}
 }

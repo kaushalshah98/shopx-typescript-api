@@ -8,6 +8,7 @@ import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
 export class Controller {
+  constructor(private service: Service) {}
 
   public getAllUsers: ApiHandler = app.get('/getallusers', async (req: Request, res: Response) => {
     try {
@@ -23,5 +24,4 @@ export class Controller {
       res.send(ResponseBuilder.badRequest(HttpStatusCode.BadRequest, error));
     }
   });
-  constructor(private service: Service) {}
 }

@@ -3,30 +3,25 @@ import { ApiHandler } from 'shared/api.interfaces';
 import { app } from '../../../../config/export';
 import { ApiResponse } from '../../../../shared/api-response';
 import { HttpStatusCode } from '../../../../shared/http-status-codes';
-import { IUser } from '../../../../shared/model';
+import { IProductItem } from '../../../../shared/model';
 import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
 export class Controller {
   constructor(private service: Service) {}
-
-  public updateUser: ApiHandler = app.put(
-    '/updateuserdata/:userid',
+  public getAllProducts: ApiHandler = app.get(
+    '/getallproducts',
     async (req: Request, res: Response) => {
       try {
-        if (req.body && Object.keys(req.body).length <= 0) {
-          res.send(ResponseBuilder.badRequest(HttpStatusCode.BadRequest, 'Invalid request'));
-          return;
-        }
-        const userId: string = req.params.userid;
-        const userdata: IUser = req.body;
-        const result = await this.service.updateUser(userId, userdata);
+        const result = await this.service.getAllProducts();
         if (result === null) {
           res.send(ResponseBuilder.badRequest(HttpStatusCode.BadRequest, 'Empty Message'));
           return;
         }
-        const response: ApiResponse<IUser> = new ApiResponse<IUser>().setResult(result);
-        response.setMessage('User Updated successfully');
+        const response: ApiResponse<IProductItem[]> = new ApiResponse<IProductItem[]>().setResult(
+          result
+        );
+        response.setMessage('Products Fetched successfully');
         res.send(ResponseBuilder.ok(response));
       } catch (error) {
         res.send(ResponseBuilder.badRequest(HttpStatusCode.BadRequest, error));

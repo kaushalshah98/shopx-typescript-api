@@ -8,6 +8,7 @@ import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
 export class Controller {
+  constructor(private service: Service) {}
   public Login: ApiHandler = app.put('/verifyuser', async (req: Request, res: Response) => {
     try {
       if (req.body && Object.keys(req.body).length <= 0) {
@@ -29,5 +30,4 @@ export class Controller {
       res.send(ResponseBuilder.badRequest(HttpStatusCode.BadRequest, error));
     }
   });
-  constructor(private service: Service) {}
 }

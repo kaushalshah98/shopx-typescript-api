@@ -2,19 +2,25 @@ import { CouchbaseError, N1qlQuery } from 'couchbase';
 import { CONSTANT } from '../shared/constant';
 import { Connection } from './connection';
 
-const KEY_VALUE_OPERATION_TIMEOUT = 10000;
+const KEY_VALUE_OPERATION_TIMEOUT = 3000;
 
 export class DBBucket {
-  private bucket: any;
-  private niql: typeof N1qlQuery;
-  private bucketName = CONSTANT.BUCKET_NAME;
-
   constructor(private readonly _connection: Connection) {
-    this.niql = this._connection.niql;
     this.initialize();
   }
+  private bucket: any;
+  private niql: typeof N1qlQuery = this._connection.niql;
+  private bucketName: string = CONSTANT.BUCKET_NAME;
   private async initialize(): Promise<void> {
     await this._connection.Authenticate();
+  }
+  private async getBucket(bucketName: string): Promise<any> {
+    try {
+      return await this._connection.getBucket(bucketName);
+    } catch (error) {
+      console.error(`[DBBucket] Connection failed for ${bucketName} Bucket!`);
+      console.log(error);
+    }
   }
 
   public async insert(id: string, object: object, options: any = {}): Promise<any> {
@@ -93,13 +99,5 @@ export class DBBucket {
         });
       }
     );
-  }
-  private async getBucket(bucketName: string): Promise<any> {
-    try {
-      return await this._connection.getBucket(bucketName);
-    } catch (error) {
-      console.error(`[DBBucket] Connection failed for ${bucketName} Bucket!`);
-      console.log(error);
-    }
   }
 }

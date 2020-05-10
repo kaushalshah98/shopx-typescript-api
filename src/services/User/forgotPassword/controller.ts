@@ -7,6 +7,7 @@ import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
 export class Controller {
+  constructor(private service: Service) {}
   public forgotPassword: ApiHandler = app.post(
     '/forgotpassword',
     async (req: Request, res: Response) => {
@@ -31,5 +32,4 @@ export class Controller {
       }
     }
   );
-  constructor(private service: Service) {}
 }

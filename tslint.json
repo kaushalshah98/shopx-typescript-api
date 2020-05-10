@@ -11,13 +11,13 @@
         true,
         {
           "order": [
+            "constructor",
             "private-static-field",
             "private-instance-field",
             "protected-static-field",
             "protected-instance-field",
             "public-static-field",
             "public-instance-field",
-            "constructor",
             "private-static-method",
             "private-instance-method",
             "protected-static-method",
