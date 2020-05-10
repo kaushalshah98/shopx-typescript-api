@@ -10,7 +10,6 @@
     "lint": "tslint --project tsconfig.json --format stylish",
     "lint-fix": "tslint --fix --project tsconfig.json --format stylish",
     "commit": "git-cz",
-    "clean": "rimraf .build && rimraf .serverless && rimraf _warmup && rimraf target",
     "cz": "git-cz",
     "prettier": "prettier --write --config ./.prettierrc --list-different src/**/*.js"
   },
@@ -27,18 +26,7 @@
     "nodemailer": "^6.4.6"
   },
   "optionalDependencies": {
-    "@commitlint/cli": "^8.3.4",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@semantic-release/changelog": "^3.0.6",
-    "@semantic-release/git": "^7.0.18",
-    "commitizen": "^4.0.3",
-    "conventional-changelog-cli": "^2.0.31",
-    "cz-conventional-changelog": "^3.0.2",
-    "husky": "^4.0.5",
-    "rimraf": "^3.0.0",
-    "nyc": "^15.0.0",
-    "prettier": "^1.19.1",
-    "semantic-release": "^15.14.0"
+    "prettier": "^1.19.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.0",
@@ -51,8 +39,8 @@
     "@types/uuid": "^3.4.6",
     "chalk": "^4.0.0",
     "couchbase": "^2.6.10",
+    "dateformat": "^3.0.3",
     "nodemon": "^2.0.2",
-    "ts-loader": "^6.2.1",
     "ts-node": "^8.6.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
