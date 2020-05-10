@@ -7,25 +7,18 @@ const KEY_VALUE_OPERATION_TIMEOUT = 10000;
 export class DBBucket {
   private bucket: any;
   private niql: typeof N1qlQuery;
+  private bucketName = CONSTANT.BUCKET_NAME;
 
   constructor(private readonly _connection: Connection) {
-    this.initialize();
     this.niql = this._connection.niql;
+    this.initialize();
   }
   private async initialize(): Promise<void> {
-    const bucketName = CONSTANT.BUCKET_NAME;
     await this._connection.Authenticate();
-    this.bucket = await this.getBucket(bucketName);
   }
-  private async getBucket(bucketName: string): Promise<any> {
-    try {
-      return await this._connection.getBucket(bucketName);
-    } catch (error) {
-      console.error(`[DBBucket] Connection failed for ${bucketName} Bucket!`);
-      console.log(error);
-    }
-  }
+
   public async insert(id: string, object: object, options: any = {}): Promise<any> {
+    this.bucket = await this.getBucket(this.bucketName);
     return new Promise(
       (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
         options.timeout = KEY_VALUE_OPERATION_TIMEOUT;
@@ -40,6 +33,7 @@ export class DBBucket {
     );
   }
   public async query(queryString: string, parameters?: any, options: any = {}): Promise<any> {
+    this.bucket = await this.getBucket(this.bucketName);
     const query: N1qlQuery = this.niql.fromString(queryString);
     return new Promise(
       (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
@@ -55,6 +49,7 @@ export class DBBucket {
     );
   }
   public async upsert(id: string, object: object, options: any = {}): Promise<any> {
+    this.bucket = await this.getBucket(this.bucketName);
     options.timeout = KEY_VALUE_OPERATION_TIMEOUT;
     return new Promise(
       (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
@@ -70,6 +65,7 @@ export class DBBucket {
     );
   }
   public async remove(id: string, options: any = {}): Promise<any> {
+    this.bucket = await this.getBucket(this.bucketName);
     return new Promise(
       (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
         options.timeout = KEY_VALUE_OPERATION_TIMEOUT;
@@ -84,6 +80,7 @@ export class DBBucket {
     );
   }
   public async get(id: string, options: any = {}): Promise<any> {
+    this.bucket = await this.getBucket(this.bucketName);
     return new Promise(
       (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
         options.timeout = KEY_VALUE_OPERATION_TIMEOUT;
@@ -96,5 +93,13 @@ export class DBBucket {
         });
       }
     );
+  }
+  private async getBucket(bucketName: string): Promise<any> {
+    try {
+      return await this._connection.getBucket(bucketName);
+    } catch (error) {
+      console.error(`[DBBucket] Connection failed for ${bucketName} Bucket!`);
+      console.log(error);
+    }
   }
 }
