@@ -1,14 +1,16 @@
 import { CouchbaseError, N1qlQuery } from 'couchbase';
 import { CONSTANT } from '../shared/constant';
 import { Connection } from './connection';
-import { niql } from './export';
+
 const KEY_VALUE_OPERATION_TIMEOUT = 10000;
 
 export class DBBucket {
   private bucket: any;
+  private niql: typeof N1qlQuery;
 
   constructor(private readonly _connection: Connection) {
     this.initialize();
+    this.niql = this._connection.niql;
   }
   private async initialize(): Promise<void> {
     const bucketName = CONSTANT.BUCKET_NAME;
@@ -38,7 +40,7 @@ export class DBBucket {
     );
   }
   public async query(queryString: string, parameters?: any, options: any = {}): Promise<any> {
-    const query: N1qlQuery = niql.fromString(queryString);
+    const query: N1qlQuery = this.niql.fromString(queryString);
     return new Promise(
       (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
         options.timeout = KEY_VALUE_OPERATION_TIMEOUT;
@@ -72,6 +74,20 @@ export class DBBucket {
       (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
         options.timeout = KEY_VALUE_OPERATION_TIMEOUT;
         this.bucket.remove(id, options, (err: CouchbaseError | null, row: any[] | null) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(row);
+          }
+        });
+      }
+    );
+  }
+  public async get(id: string, options: any = {}): Promise<any> {
+    return new Promise(
+      (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
+        options.timeout = KEY_VALUE_OPERATION_TIMEOUT;
+        this.bucket.get(id, options, (err: CouchbaseError | null, row: any[] | null) => {
           if (err) {
             reject(err);
           } else {

@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { ApiHandler } from 'shared/api.interfaces';
-import { IListArray, IUser } from '../../../../shared/model';
 import { app } from '../../../../config/export';
 import { ApiResponse } from '../../../../shared/api-response';
 import { HttpStatusCode } from '../../../../shared/http-status-codes';
+import { IListArray, IUser } from '../../../../shared/model';
 import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 

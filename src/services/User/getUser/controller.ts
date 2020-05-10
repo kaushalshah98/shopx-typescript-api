@@ -8,18 +8,18 @@ import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
 export class Controller {
-
-  public getAllUsers: ApiHandler = app.get('/getallusers', async (req: Request, res: Response) => {
+  public getUser: ApiHandler = app.get('/getuser/:userid', async (req: Request, res: Response) => {
     try {
-      const result = await this.service.getAllUsers();
+      const userId: string = req.params.userid;
+      const result = await this.service.getUser(userId);
       if (result === null) {
         res.send(ResponseBuilder.badRequest(HttpStatusCode.BadRequest, 'Empty Message'));
+        return;
       }
-      const response: ApiResponse<IUser[]> = new ApiResponse<IUser[]>().setResult(result);
-      response.setMessage('Users Fetched successfully');
+      const response: ApiResponse<IUser> = new ApiResponse<IUser>().setResult(result);
+      response.setMessage('User Found successfully');
       res.send(ResponseBuilder.ok(response));
     } catch (error) {
-      console.error(error);
       res.send(ResponseBuilder.badRequest(HttpStatusCode.BadRequest, error));
     }
   });

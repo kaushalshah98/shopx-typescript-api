@@ -1,5 +1,5 @@
-import { IBuyList } from '../../../../shared/model';
 import { DBBucket } from '../../../../config/DbBucket';
+import { IBuyList } from '../../../../shared/model';
 
 export class Repository {
   constructor(private readonly _bucket: DBBucket) {}

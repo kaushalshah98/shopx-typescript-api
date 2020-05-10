@@ -10,6 +10,8 @@ export class Connection {
   };
   private cluster: couchbase.Cluster = new couchbase.Cluster(this.connection.COUCHBASE_URL);
 
+  public niql: typeof couchbase.N1qlQuery = couchbase.N1qlQuery;
+
   public async Authenticate(): Promise<any> {
     return new Promise(
       (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
