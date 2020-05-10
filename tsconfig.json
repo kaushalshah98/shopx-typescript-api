@@ -29,10 +29,10 @@
     "types": ["node"],
     "typeRoots": ["./node_modules/@types"],
     "paths": {
-      "@connection/*": ["src/config/connection/*"],
-      "@config/*": ["src/config/*"]
+      "@shared/*": ["./shared/*"],
+      "@config/*": ["./config/*"]
     }
   },
-  "include": ["src/**/*.ts", "shared/constant.ts", "src/services/User/usermanagement.js"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }
