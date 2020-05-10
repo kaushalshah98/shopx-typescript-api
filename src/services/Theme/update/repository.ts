@@ -1,4 +1,4 @@
-import { CONSTANT } from 'shared/constant';
+import { CONSTANT } from '../../../../shared/constant';
 import { DBBucket } from '../../../../config/DbBucket';
 
 export class Repository {
