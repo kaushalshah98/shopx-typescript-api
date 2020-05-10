@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "baseUrl": "./",
+    "watch": true,
+    "lib": ["es6", "esnext", "es2018"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "preserveSymlinks": true,
+    "rootDir": "./",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "preserveConstEnums": true,
+    "noFallthroughCasesInSwitch": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "pretty": true,
+    "outDir": "dist",
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types"],
+    "paths": {
+      "@connection/*": ["src/config/connection/*"],
+      "@config/*": ["src/config/*"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

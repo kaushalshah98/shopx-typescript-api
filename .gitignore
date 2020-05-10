@@ -1,0 +1,15 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Webpack directories
+.webpack
+.build
+config.local-*.json 
+/target
+_warmup
+coverage
+.nyc_output
