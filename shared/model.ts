@@ -25,10 +25,9 @@ export interface IListArray {
   name: string;
 }
 export interface IReview {
-  name?: string;
-  reviewlist: IReviewList[];
-  product_id?: string;
-  type?: string;
+  list: IReviewList[];
+  product_id: string;
+  type: string;
 }
 export interface IReviewList {
   name: string;
@@ -44,8 +43,8 @@ export interface IProductItem {
   details: object;
   innercategory: string;
   image: IProductImage[];
-  type?: string;
-  product_id?: string;
+  type: string;
+  product_id: string;
 }
 export interface ICartItem {
   name: string;
@@ -56,8 +55,8 @@ export interface ICartItem {
   details: object;
   innercategory: string;
   image: IProductImage[];
-  type?: string;
-  product_id?: string;
+  type: string;
+  product_id: string;
   qty?: number;
 }
 export interface IProductImage {

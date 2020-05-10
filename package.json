@@ -4,7 +4,7 @@
   "description": "Backend For SHOPX WEBSITE",
   "main": "./src/server.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "nodemon -s",
     "start": "ts-node src/server.ts",
     "lint:ci": "npm run prettier",
     "lint": "tslint --project tsconfig.json --format stylish",

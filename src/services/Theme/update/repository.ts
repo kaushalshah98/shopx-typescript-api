@@ -1,5 +1,5 @@
-import { CONSTANT } from '../../../../shared/constant';
 import { DBBucket } from '../../../../config/DbBucket';
+import { CONSTANT } from '../../../../shared/constant';
 
 export class Repository {
   constructor(private readonly _bucket: DBBucket) {}
