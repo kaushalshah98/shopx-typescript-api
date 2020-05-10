@@ -1,8 +1,8 @@
 import * as Admin from './services/Admin/index';
 import * as List from './services/Buy-List/index';
-import * as User from './services/User/index';
 import * as Product from './services/Product/index';
 import * as Theme from './services/Theme/index';
+import * as User from './services/User/index';
 // -------------------Admin -----------------------------
 Admin.getAllUsers;
 Admin.blockUser;
