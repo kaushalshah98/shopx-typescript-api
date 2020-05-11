@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon -s",
     "start": "ts-node src/server.ts",
+    "build": "tsc",
     "lint:ci": "npm run prettier",
     "lint": "tslint --project tsconfig.json --format stylish",
     "lint-fix": "tslint --fix --project tsconfig.json --format stylish",
