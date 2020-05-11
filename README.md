@@ -2,7 +2,7 @@
 
 This project was created with (NodeJS and TypeScript) and use Couchbase as its Database.
 
-## Installing
+## Installation
 
 Run `npm install` to install all the dependencies. It will create a `node_modules` folder.
 
