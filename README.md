@@ -1,6 +1,8 @@
 # SHOPX API
 
-This project was created with (NodeJS and TypeScript) and use Couchbase as its Database.
+This project was created with [Angular CLI](https://github.com/angular/angular-cli),
+[NodeJS](https://nodejs.org/en/),[TypeScript](https://www.typescriptlang.org/) and
+[CouchBase](https://www.couchbase.com/)
 
 ## Installation
 
