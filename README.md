@@ -6,6 +6,10 @@ This project was created with (NodeJS and TypeScript) and use Couchbase as its D
 
 Run `npm install` to install all the dependencies. It will create a `node_modules` folder.
 
+## Production server
+
+Run `npm run start` for a production server. Server Will start at `http://localhost:3000/`
+
 ## Development server
 
 Run `npm run dev` for a dev server. Server Will start at `http://localhost:3000/`
