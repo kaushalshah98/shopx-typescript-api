@@ -2,7 +2,7 @@
 
 This project was created with
 [NodeJS](https://nodejs.org/en/), [TypeScript](https://www.typescriptlang.org/) and
-[CouchBase](https://www.couchbase.com/)
+[CouchBase](https://www.couchbase.com/).
 
 ## Installation
 
