@@ -16,7 +16,7 @@ The app will automatically reload if you change any of the source files.
 Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
 It complies all the `typescript` files into `javascript`.
 
-## Code Formaater
+## Code Formatter
 
 Run `npm run lint:ci` to format the project. It will fix all the syntax and code format all over the folders.
 
