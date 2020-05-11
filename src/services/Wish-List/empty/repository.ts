@@ -3,9 +3,10 @@ import { DBBucket } from '../../../../config/DbBucket';
 export class Repository {
   constructor(private readonly _bucket: DBBucket) {}
 
-  public async deleteProduct(productId: string): Promise<any> {
+  public async clearWishList(userId: string): Promise<any> {
     try {
-      return await this._bucket.remove(productId);
+      const wishlistId = 'WISHLIST::' + userId;
+      return await this._bucket.remove(wishlistId);
     } catch (error) {
       return Promise.reject(error);
     }
