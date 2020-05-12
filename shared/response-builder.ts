@@ -1,11 +1,11 @@
 import * as Res from './api-response';
 import { ApiResponse, IErrorResponseBody } from './api.interfaces';
-import { ErrorCode } from './error-codes';
 import {
   BadRequestResult,
   ErrorResult,
   ForbiddenResult,
   InternalServerErrorResult,
+  NoContentResult,
   NotFoundResult,
   UnAuthorizedResult
 } from './errors';
@@ -15,8 +15,7 @@ import { HttpStatusCode } from './http-status-codes';
  */
 export class ResponseBuilder {
   private static _returnAs<T>(result: T, statusCode: number): any {
-    const bodyObject: IErrorResponseBody | T =
-      result instanceof ErrorResult ? { error: result } : result;
+    const bodyObject: IErrorResponseBody | T = result instanceof ErrorResult ? result : result;
     const response = {
       body: bodyObject,
       headers: {
@@ -28,25 +27,39 @@ export class ResponseBuilder {
 
     return response;
   }
-  public static badRequest(code: string, description: string): ApiResponse {
-    const errorResult: BadRequestResult = new BadRequestResult(code, description);
+
+  private static badRequest(message: string, messageCode: string): ApiResponse {
+    const errorResult: BadRequestResult = new BadRequestResult(
+      HttpStatusCode.BadRequest,
+      message,
+      messageCode
+    );
     return ResponseBuilder._returnAs<BadRequestResult>(errorResult, +HttpStatusCode.BadRequest);
   }
 
-  public static unAuthorized(code: string, description: string): ApiResponse {
-    const errorResult: UnAuthorizedResult = new UnAuthorizedResult(code, description);
+  private static unAuthorized(message: string, messageCode: string): ApiResponse {
+    const errorResult: UnAuthorizedResult = new UnAuthorizedResult(
+      HttpStatusCode.UnAuthorized,
+      message,
+      messageCode
+    );
     return ResponseBuilder._returnAs<UnAuthorizedResult>(errorResult, +HttpStatusCode.UnAuthorized);
   }
 
-  public static forbidden(code: string, description: string): ApiResponse {
-    const errorResult: ForbiddenResult = new ForbiddenResult(code, description);
+  private static forbidden(message: string, messageCode: string): ApiResponse {
+    const errorResult: ForbiddenResult = new ForbiddenResult(
+      HttpStatusCode.Forbidden,
+      message,
+      messageCode
+    );
     return ResponseBuilder._returnAs<ForbiddenResult>(errorResult, +HttpStatusCode.Forbidden);
   }
 
-  public static internalServerError(error: Error): ApiResponse {
+  private static internalServerError(message: string, messageCode: string): ApiResponse {
     const errorResult: InternalServerErrorResult = new InternalServerErrorResult(
-      ErrorCode.GeneralError,
-      'Sorry...'
+      HttpStatusCode.InternalServerError,
+      `Couchbase Connection Error ::${message}`,
+      messageCode
     );
     return ResponseBuilder._returnAs<InternalServerErrorResult>(
       errorResult,
@@ -54,24 +67,50 @@ export class ResponseBuilder {
     );
   }
 
-  public static notFound(code: string, description: string): ApiResponse {
-    const errorResult: NotFoundResult = new NotFoundResult(code, description);
+  private static notFound(message: string, messageCode: string): ApiResponse {
+    const errorResult: NotFoundResult = new NotFoundResult(
+      HttpStatusCode.NotFound,
+      message,
+      messageCode
+    );
     return ResponseBuilder._returnAs<NotFoundResult>(errorResult, +HttpStatusCode.NotFound);
   }
 
-  public static ok<T>(result: T): ApiResponse {
+  private static noContent(message: string, messageCode: string): ApiResponse {
+    const errorResult: NoContentResult = new NoContentResult(
+      HttpStatusCode.NoContent,
+      message,
+      messageCode
+    );
+    return ResponseBuilder._returnAs<NoContentResult>(errorResult, +HttpStatusCode.NoContent);
+  }
+
+  private static ok<T>(result: T): ApiResponse {
     return ResponseBuilder._returnAs<T>(result, +HttpStatusCode.Ok);
   }
 
-  public static build<T>(response: Res.ApiResponse<T>) {
+  private static created<T>(result: T): ApiResponse {
+    return ResponseBuilder._returnAs<T>(result, +HttpStatusCode.Created);
+  }
+
+  /**
+   *  @deprecated build method should be deprecated and needs to use buildResponse method
+   */
+  public static build<T>(response: Res.ApiResponseResult<T>) {
     if (response.getStatus() === HttpStatusCode.BadRequest) {
-      return this.badRequest(response.getStatus(), response.getMessage());
+      return this.badRequest(response.getMessage(), response.getStatus());
     } else if (response.getStatus() === HttpStatusCode.UnAuthorized) {
-      return this.unAuthorized(response.getStatus(), response.getMessage());
+      return this.unAuthorized(response.getMessage(), response.getStatus());
     } else if (response.getStatus() === HttpStatusCode.Forbidden) {
-      return this.forbidden(response.getStatus(), response.getMessage());
+      return this.forbidden(response.getMessage(), response.getStatus());
     } else if (response.getStatus() === HttpStatusCode.NotFound) {
-      return this.notFound(response.getStatus(), response.getMessage());
+      return this.notFound(response.getMessage(), response.getStatus());
+    } else if (response.getStatus() === HttpStatusCode.InternalServerError) {
+      return this.internalServerError(response.getMessage(), response.getStatus());
+    } else if (response.getStatus() === HttpStatusCode.NoContent) {
+      return this.noContent(response.getMessage(), response.getStatus());
+    } else if (response.getStatus() === HttpStatusCode.Created) {
+      return this.created(response);
     } else {
       return this.ok(response);
     }
@@ -79,13 +118,37 @@ export class ResponseBuilder {
 
   public static buildResponse<T>(response: Res.IApiResponse<T>) {
     if (response.status === HttpStatusCode.BadRequest) {
-      return this.badRequest(response.status, response.message ? response.message : '');
+      return this.badRequest(
+        response.message ? response.message : '',
+        response.messageCode ? response.messageCode : ''
+      );
     } else if (response.status === HttpStatusCode.UnAuthorized) {
-      return this.unAuthorized(response.status, response.message ? response.message : '');
+      return this.unAuthorized(
+        response.message ? response.message : '',
+        response.messageCode ? response.messageCode : ''
+      );
     } else if (response.status === HttpStatusCode.Forbidden) {
-      return this.forbidden(response.status, response.message ? response.message : '');
+      return this.forbidden(
+        response.message ? response.message : '',
+        response.messageCode ? response.messageCode : ''
+      );
     } else if (response.status === HttpStatusCode.NotFound) {
-      return this.notFound(response.status, response.message ? response.message : '');
+      return this.notFound(
+        response.message ? response.message : '',
+        response.messageCode ? response.messageCode : ''
+      );
+    } else if (response.status === HttpStatusCode.InternalServerError) {
+      return this.internalServerError(
+        response.message ? response.message : '',
+        response.messageCode ? response.messageCode : ''
+      );
+    } else if (response.status === HttpStatusCode.NoContent) {
+      return this.noContent(
+        response.message ? response.message : '',
+        response.messageCode ? response.messageCode : ''
+      );
+    } else if (response.status === HttpStatusCode.Created) {
+      return this.created(response);
     } else {
       return this.ok(response);
     }

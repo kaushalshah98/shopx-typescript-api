@@ -1,10 +1,12 @@
 // tslint:disable max-classes-per-file (Many simple inherited classes.)
 
 export abstract class ErrorResult extends Error {
-  public constructor(public code: string, public description: string) {
-    super(description);
+  public constructor(public status: string, public message: string, public messageCode: string) {
+    super();
   }
 }
+
+export class NoContentResult extends ErrorResult {}
 
 export class BadRequestResult extends ErrorResult {}
 

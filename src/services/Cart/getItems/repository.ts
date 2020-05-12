@@ -5,7 +5,7 @@ export class Repository {
   constructor(private readonly _bucket: DBBucket) {}
 
   public async getItems(userId: string): Promise<any> {
-    const cartId = 'WISHLIST::' + userId;
+    const cartId = 'CART::' + userId;
     const query = `
     SELECT {items.product_id,items.qty,p.name,p.price,p.image,p.quantity,p.description,p.details} 
     AS ${CONSTANT.CART_ITEMS} 

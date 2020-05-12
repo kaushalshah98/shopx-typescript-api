@@ -2,7 +2,7 @@ import { IOrderArray } from '@shared/model';
 import { Request, Response } from 'express';
 import { ApiHandler } from 'shared/api.interfaces';
 import { app } from '../../../../config/export';
-import { ApiResponse } from '../../../../shared/api-response';
+import { IApiResponse } from '../../../../shared/api-response';
 import { HttpStatusCode } from '../../../../shared/http-status-codes';
 import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
@@ -14,21 +14,39 @@ export class Controller {
     async (req: Request, res: Response) => {
       try {
         if (req.body && Object.keys(req.body).length <= 0) {
-          res.send(ResponseBuilder.badRequest(HttpStatusCode.BadRequest, 'Invalid request'));
+          res.send(
+            ResponseBuilder.buildResponse({
+              status: HttpStatusCode.BadRequest,
+              message: 'Invalid request (Invalid/Empty Body)'
+            })
+          );
           return;
         }
         const userId: string = req.params.userid;
         const order: IOrderArray[] = req.body;
         const result = await this.service.deleteOrder(userId, order);
         if (result === null) {
-          res.send(ResponseBuilder.badRequest(HttpStatusCode.BadRequest, 'Empty Message'));
+          res.send(
+            ResponseBuilder.buildResponse({
+              status: HttpStatusCode.BadRequest,
+              message: 'Empty Message'
+            })
+          );
           return;
         }
-        const response: ApiResponse<any> = new ApiResponse<any>().setResult(result);
-        response.setMessage('Order Deleted successfully');
-        res.send(ResponseBuilder.ok(response));
+        const response: IApiResponse<any> = {
+          status: HttpStatusCode.Ok,
+          result: result,
+          message: 'Order Deleted successfully'
+        };
+        res.send(ResponseBuilder.buildResponse(response));
       } catch (error) {
-        res.send(ResponseBuilder.badRequest(HttpStatusCode.BadRequest, error));
+        res.send(
+          ResponseBuilder.buildResponse({
+            status: HttpStatusCode.BadRequest,
+            message: error
+          })
+        );
       }
     }
   );

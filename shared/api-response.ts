@@ -1,7 +1,10 @@
 import { HttpStatusCode } from './http-status-codes';
 
+/**
+ *  @deprecated ApiResponseResult class should be deprecated and needs to use IApiResponse interface
+ */
 // tslint:disable: typedef
-export class ApiResponse<T> {
+export class ApiResponseResult<T> {
   private status: string = HttpStatusCode.Ok;
   private message = '';
   private messageCode = '';
