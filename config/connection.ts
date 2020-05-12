@@ -13,25 +13,22 @@ export class Connection {
   public niql: typeof couchbase.N1qlQuery = couchbase.N1qlQuery;
 
   public async Authenticate(): Promise<any> {
-    return new Promise(
-      (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
-        resolve(
-          this.cluster.authenticate(this.connection.COUCHBASE_USER, this.connection.COUCHBASE_PWD)
-        );
-      }
-    );
+    return new Promise((resolve: any, reject: any) => {
+      resolve(
+        this.cluster.authenticate(this.connection.COUCHBASE_USER, this.connection.COUCHBASE_PWD)
+      );
+    });
   }
   public async getBucket(bucketName: string): Promise<any> {
-    return new Promise(
-      (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
-        const bucket: IBucket = this.cluster.openBucket(bucketName, (err: CouchbaseError) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(bucket);
-          }
-        });
-      }
-    );
+    const bucket = await new Promise((resolve: any, reject: any) => {
+      const bucket: IBucket = this.cluster.openBucket(bucketName, (err: CouchbaseError) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(bucket);
+        }
+      });
+    });
+    return bucket;
   }
 }
