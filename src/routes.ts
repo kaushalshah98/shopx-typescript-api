@@ -7,6 +7,7 @@ import * as Review from './services/Review/index';
 import * as Theme from './services/Theme/index';
 import * as User from './services/User/index';
 import * as WishList from './services/Wish-List/index';
+
 // -------------------Admin -----------------------------
 Admin.getAllUsers;
 Admin.blockUser;
