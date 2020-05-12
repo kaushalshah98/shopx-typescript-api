@@ -13,7 +13,7 @@ export class Repository {
     try {
       return await this._bucket.insert(userId, userdata);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

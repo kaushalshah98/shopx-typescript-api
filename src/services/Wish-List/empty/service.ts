@@ -6,7 +6,7 @@ export class Service {
     try {
       return this.repository.clearWishList(userId);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

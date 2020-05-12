@@ -16,7 +16,7 @@ export class Service {
         if (err) { throw err; }
       });
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

@@ -15,7 +15,7 @@ export class Repository {
       await this._bucket.query(query, [quantity, productId, userId]);
       return await this._bucket.get(userId);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

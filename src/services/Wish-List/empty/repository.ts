@@ -8,7 +8,7 @@ export class Repository {
       const wishlistId = 'WISHLIST::' + userId;
       return await this._bucket.remove(wishlistId);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

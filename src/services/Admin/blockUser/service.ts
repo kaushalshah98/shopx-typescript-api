@@ -25,7 +25,7 @@ export class Service {
         }
       );
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

@@ -9,7 +9,7 @@ export class Repository {
     try {
       return await this._bucket.query(query, [productId]);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

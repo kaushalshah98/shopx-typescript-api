@@ -12,7 +12,7 @@ export class Repository {
       WHEN items.product_id != $2 END`;
       return await this._bucket.query(query, [cartId, productId]);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

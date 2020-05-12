@@ -17,7 +17,7 @@ export class Repository {
       await this._bucket.query(query, [userId, name, password, email, profilepic]);
       return await this._bucket.get(userId);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

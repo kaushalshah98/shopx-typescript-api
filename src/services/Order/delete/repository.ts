@@ -9,7 +9,7 @@ export class Repository {
       const orderId = 'ORDER::' + userId;
       return await this._bucket.upsert(orderId, orderdoc);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

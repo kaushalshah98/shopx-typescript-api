@@ -9,7 +9,7 @@ export class Repository {
       const reviewId = 'REVIEW::' + uuid.v4();
       return await this._bucket.upsert(reviewId, reviewdoc);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

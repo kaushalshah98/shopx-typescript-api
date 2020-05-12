@@ -13,7 +13,7 @@ export class Service {
         return null;
       }
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

@@ -8,7 +8,7 @@ export class Repository {
       const cartId = 'CART::' + userId;
       return await this._bucket.remove(cartId);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

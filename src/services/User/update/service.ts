@@ -9,8 +9,9 @@ export class Service {
       if (result) {
         return Promise.resolve(result.value);
       }
+      return result;
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

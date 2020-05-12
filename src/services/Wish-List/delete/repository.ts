@@ -12,7 +12,7 @@ export class Repository {
       WHEN items.product_id != $1 END`;
       return await this._bucket.query(query, [wishlistId, productId]);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

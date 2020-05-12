@@ -12,7 +12,7 @@ export class Service {
       };
       return this.repository.deleteOrder(userId, orderdoc);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

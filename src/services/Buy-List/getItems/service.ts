@@ -8,11 +8,9 @@ export class Service {
       const result = await this.repository.getItems(userId);
       if (result && result.length > 0) {
         return result[0].list as IBuyList[];
-      } else {
-        return result;
-      }
+      }return result;
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

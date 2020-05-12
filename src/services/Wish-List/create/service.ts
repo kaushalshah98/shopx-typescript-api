@@ -23,7 +23,7 @@ export class Service {
         return await this.repository.createList(userId, wishlistdoc);
       }
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

@@ -10,7 +10,7 @@ export class Repository {
     try {
       await this._bucket.upsert(productId, productdata);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

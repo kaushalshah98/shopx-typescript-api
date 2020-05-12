@@ -12,7 +12,7 @@ export class Repository {
     try {
       return await this._bucket.insert(productId, productdata);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

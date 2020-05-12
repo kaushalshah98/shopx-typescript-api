@@ -24,7 +24,7 @@ export class Service {
         return await this.repository.createCart(userId, cartdoc);
       }
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

@@ -10,12 +10,9 @@ export class Service {
         product_id: productId,
         type: 'REVIEW'
       };
-      const result = await this.repository.createReview(productId, reviewdoc);
-      if (result.length <= 0) {
-        return Promise.resolve(null);
-      }
+      return await this.repository.createReview(productId, reviewdoc);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

@@ -22,7 +22,7 @@ export class Service {
         return await this.repository.updateOrder(userId, order);
       }
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }

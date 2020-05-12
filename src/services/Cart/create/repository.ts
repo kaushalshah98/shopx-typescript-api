@@ -11,7 +11,7 @@ export class Repository {
       const query = `SELECT * FROM ${CONSTANT.BUCKET_NAME} USE KEYS $1`;
       return await this._bucket.query(query, [cartId]);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 
@@ -20,7 +20,7 @@ export class Repository {
       const cartId = 'CART::' + userId;
       return await this._bucket.insert(cartId, cartdoc);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 
@@ -32,7 +32,7 @@ export class Repository {
       AND type = '${CONSTANT.CART_TYPE}'`;
       return await this._bucket.query(query, [item, userId]);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 
@@ -46,7 +46,7 @@ export class Repository {
       END;`;
       return await this._bucket.query(query, [quantity, productId, userId]);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 
@@ -59,7 +59,7 @@ export class Repository {
       WHERE list.product_id = $2`;
       return await this._bucket.query(query, [cartId, productId]);
     } catch (error) {
-      return Promise.reject(error);
+      throw error;
     }
   }
 }
