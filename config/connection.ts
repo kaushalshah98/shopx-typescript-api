@@ -20,7 +20,7 @@ export class Connection {
     });
   }
   public async getBucket(bucketName: string): Promise<any> {
-    const bucket = await new Promise((resolve: any, reject: any) => {
+    const bucketInstance = await new Promise((resolve: any, reject: any) => {
       const bucket: IBucket = this.cluster.openBucket(bucketName, (err: CouchbaseError) => {
         if (err) {
           reject(err);
@@ -29,6 +29,6 @@ export class Connection {
         }
       });
     });
-    return bucket;
+    return bucketInstance;
   }
 }

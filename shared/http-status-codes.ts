@@ -9,3 +9,8 @@ export const HttpStatusCode = {
   Created: '201',
   NoContent: '204'
 };
+
+export const HttpMessage = {
+  emptyBody: 'Invalid request (Invalid/Empty Body)',
+  emptyMessage: 'Empty Message'
+};

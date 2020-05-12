@@ -5,12 +5,12 @@ import { Connection } from './connection';
 const KEY_VALUE_OPERATION_TIMEOUT = 3000;
 
 export class DBBucket {
-  constructor(private readonly _connection: Connection) {
-    this.Authenticate();
-  }
   private bucket: any;
   private niql: typeof N1qlQuery = this._connection.niql;
   private bucketName: string = CONSTANT.BUCKET_NAME;
+  constructor(private readonly _connection: Connection) {
+    this.Authenticate();
+  }
   private async Authenticate(): Promise<void> {
     await this._connection.Authenticate();
   }

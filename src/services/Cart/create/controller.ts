@@ -2,21 +2,19 @@ import { Request, Response } from 'express';
 import { ApiHandler } from 'shared/api.interfaces';
 import { app } from '../../../../config/export';
 import { IApiResponse } from '../../../../shared/api-response';
-import { HttpStatusCode } from '../../../../shared/http-status-codes';
+import { HttpMessage, HttpStatusCode } from '../../../../shared/http-status-codes';
 import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
 export class Controller {
+  private status: string = HttpStatusCode.BadRequest;
+  private message: string = HttpMessage.emptyMessage;
   constructor(private service: Service) {}
   public addItems: ApiHandler = app.post('/AddTocart', async (req: Request, res: Response) => {
     try {
       if (req.body && Object.keys(req.body).length <= 0) {
-        res.send(
-          ResponseBuilder.buildResponse({
-            status: HttpStatusCode.BadRequest,
-            message: 'Invalid request (Invalid/Empty Body)'
-          })
-        );
+        this.message = 'Invalid request (Invalid/Empty Body)';
+        res.send(ResponseBuilder.buildResponse({ status: this.status, message: this.message }));
         return;
       }
       const userId: string = req.body.userid;
@@ -38,12 +36,7 @@ export class Controller {
       };
       res.send(ResponseBuilder.buildResponse(responsee));
     } catch (error) {
-      res.send(
-        ResponseBuilder.buildResponse({
-          status: HttpStatusCode.BadRequest,
-          message: error
-        })
-      );
+      res.send(ResponseBuilder.buildResponse({ status: this.status, message: error }));
     }
   });
 }
