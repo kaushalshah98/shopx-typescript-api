@@ -3,7 +3,7 @@ import { ApiHandler } from 'shared/api.interfaces';
 import { app } from '../../../../config/export';
 import { IApiResponse } from '../../../../shared/api-response';
 import { HttpStatusCode } from '../../../../shared/http-status-codes';
-import { IListArray, IUser } from '../../../../shared/model';
+import { IListArray } from '../../../../shared/model';
 import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
@@ -15,34 +15,40 @@ export class Controller {
     async (req: Request, res: Response) => {
       try {
         if (req.body && Object.keys(req.body).length <= 0) {
- res.send(
+          res.send(
             ResponseBuilder.buildResponse({
               status: HttpStatusCode.BadRequest,
               message: 'Invalid request (Invalid/Empty Body)'
             })
-          );          return;
+          );
+          return;
         }
         const userId: string = req.params.userid;
         const list: IListArray[] = req.body;
         const result = await this.service.AddItems(userId, list);
         if (result === null) {
-   res.send(
+          res.send(
             ResponseBuilder.buildResponse({
               status: HttpStatusCode.BadRequest,
               message: 'Empty Message'
             })
-          );          return;
+          );
+          return;
         }
-        const response: ApiResponse<IUser[]> = new ApiResponse<IUser[]>().setResult(result);
-        response.setMessage('Items Added To List successfully');
-        res.send(ResponseBuilder.ok(response));
+        const response: IApiResponse<any> = {
+          status: HttpStatusCode.Ok,
+          message: 'Items Added To List successfully',
+          result: result
+        };
+        res.send(ResponseBuilder.buildResponse(response));
       } catch (error) {
-res.send(
+        res.send(
           ResponseBuilder.buildResponse({
             status: HttpStatusCode.BadRequest,
             message: error
           })
-        );      }
+        );
+      }
     }
   );
 }
