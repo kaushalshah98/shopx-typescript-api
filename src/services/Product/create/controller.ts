@@ -35,7 +35,7 @@ export class Controller {
         }
         const response: IApiResponse<any> = {
           status: HttpStatusCode.Ok,
-          result: result,
+          result,
           message: 'Product Created successfully'
         };
         res.send(ResponseBuilder.buildResponse(response));

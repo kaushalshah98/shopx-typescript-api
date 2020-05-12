@@ -38,7 +38,7 @@ export class Controller {
         const response: IApiResponse<IUser[]> = {
           status: HttpStatusCode.Ok,
           message: 'User Blocked successfully',
-          result: result
+          result
         };
         res.send(ResponseBuilder.buildResponse(response));
       } catch (error) {

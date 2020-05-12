@@ -25,18 +25,18 @@ export class Controller {
       if (result === null) {
         const response: IApiResponse<any> = {
           status: HttpStatusCode.Ok,
-          result: result,
+          result,
           message: 'Item Already is in List'
         };
         res.send(ResponseBuilder.buildResponse(response));
         return;
       }
-      const response: IApiResponse<any> = {
+      const responsee: IApiResponse<any> = {
         status: HttpStatusCode.Ok,
-        result: result,
+        result,
         message: 'Item Added successfully'
       };
-      res.send(ResponseBuilder.buildResponse(response));
+      res.send(ResponseBuilder.buildResponse(responsee));
     } catch (error) {
       res.send(
         ResponseBuilder.buildResponse({

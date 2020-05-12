@@ -24,7 +24,7 @@ export class Controller {
       }
       const response: IApiResponse<ICartSize> = {
         status: HttpStatusCode.Ok,
-        result: result,
+        result,
         message: 'Cart Size Fetched successfully'
       };
       res.send(ResponseBuilder.buildResponse(response));

@@ -26,7 +26,7 @@ export class Controller {
         }
         const response: IApiResponse<ICart[]> = {
           status: HttpStatusCode.Ok,
-          result: result,
+          result,
           message: 'Cart Items Fetched successfully'
         };
         res.send(ResponseBuilder.buildResponse(response));

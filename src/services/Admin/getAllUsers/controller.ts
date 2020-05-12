@@ -23,7 +23,7 @@ export class Controller {
       }
       const response: IApiResponse<IUser[]> = {
         status: HttpStatusCode.Ok,
-        result: result,
+        result,
         message: 'Users Fetched successfully'
       };
       res.send(ResponseBuilder.buildResponse(response));

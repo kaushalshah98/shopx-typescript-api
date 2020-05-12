@@ -36,7 +36,7 @@ export class Controller {
         }
         const response: IApiResponse<IProductItem[]> = {
           status: HttpStatusCode.Ok,
-          result: result,
+          result,
           message: 'Product Fetched successfully'
         };
         res.send(ResponseBuilder.buildResponse(response));

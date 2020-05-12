@@ -37,7 +37,7 @@ export class Controller {
         }
         const response: IApiResponse<IUser> = {
           status: HttpStatusCode.Ok,
-          result: result,
+          result,
           message: 'User Updated successfully'
         };
         res.send(ResponseBuilder.buildResponse(response));

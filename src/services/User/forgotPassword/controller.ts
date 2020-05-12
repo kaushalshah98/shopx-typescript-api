@@ -36,7 +36,7 @@ export class Controller {
         }
         const response: IApiResponse<any> = {
           status: HttpStatusCode.Ok,
-          result: result,
+          result,
           message: 'Password Sent successfully'
         };
         res.send(ResponseBuilder.buildResponse(response));

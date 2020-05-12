@@ -24,7 +24,7 @@ export class Controller {
       }
       const response: IApiResponse<any> = {
         status: HttpStatusCode.Ok,
-        result: result,
+        result,
         message: 'Theme Fetched successfully'
       };
       res.send(ResponseBuilder.buildResponse(response));

@@ -37,7 +37,7 @@ export class Controller {
         }
         const response: IApiResponse<any> = {
           status: HttpStatusCode.Ok,
-          result: result,
+          result,
           message: 'Cart Updated successfully'
         };
         res.send(ResponseBuilder.buildResponse(response));

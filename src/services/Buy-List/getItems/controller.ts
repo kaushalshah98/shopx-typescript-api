@@ -27,7 +27,7 @@ export class Controller {
         const response: IApiResponse<IBuyList[]> = {
           status: HttpStatusCode.Ok,
           message: 'Items Fetched successfully',
-          result: result
+          result
         };
         res.send(ResponseBuilder.buildResponse(response));
       } catch (error) {

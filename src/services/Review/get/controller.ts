@@ -27,7 +27,7 @@ export class Controller {
         }
         const response: IApiResponse<IReview[]> = {
           status: HttpStatusCode.Ok,
-          result: result,
+          result,
           message: 'Review Fetched successfully'
         };
         res.send(ResponseBuilder.buildResponse(response));

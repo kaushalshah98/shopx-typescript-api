@@ -26,7 +26,7 @@ export class Controller {
         }
         const response: IApiResponse<IWishItem[]> = {
           status: HttpStatusCode.Ok,
-          result: result,
+          result,
           message: 'Wishlist Fetched successfully'
         };
         res.send(ResponseBuilder.buildResponse(response));
