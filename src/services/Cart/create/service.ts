@@ -18,7 +18,6 @@ export class Service {
           return await this.repository.updateCart(userId, item);
         } else {
           const quantity: number = ++row[0].qty;
-          console.log(quantity);
           return await this.repository.updateItem(quantity, userId, productId);
         }
       } else {

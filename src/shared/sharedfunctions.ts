@@ -23,7 +23,7 @@ export class SendMail {
 
     transporter.sendMail(mailOptions, (error: Error | null, res: any): void => {
       if (error) {
-        console.log(error);
+        callback(error);
       } else {
         callback(res);
       }
