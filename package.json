@@ -12,7 +12,7 @@
     "lint-fix": "tslint --fix --project tsconfig.json --format stylish",
     "commit": "git-cz",
     "cz": "git-cz",
-    "prettier": "prettier --write --config ./.prettierrc --list-different src/**/*.js"
+    "prettier": "prettier --write \"{src,test,resources,config,__mock-data__,shared}/**/*.{ts,json,yml}\" \"{buildspec*,config*,serverless}.{yml,json}\""
   },
   "repository": {
     "type": "git",

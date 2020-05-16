@@ -8,7 +8,7 @@ import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
 export class Controller {
-private status: string = HttpStatusCode.BadRequest;
+  private status: string = HttpStatusCode.BadRequest;
   private message: string = HttpMessage.emptyMessage;
   constructor(private service: Service) {}
   public getItems: ApiHandler = app.get(
@@ -18,8 +18,7 @@ private status: string = HttpStatusCode.BadRequest;
         const userId = req.params.userid;
         const result = await this.service.getItems(userId);
         if (result === null) {
-                 res.send(ResponseBuilder.buildResponse({ status: this.status, message: this.message }));
-
+          res.send(ResponseBuilder.buildResponse({ status: this.status, message: this.message }));
         }
         const response: IApiResponse<IBuyList[]> = {
           status: HttpStatusCode.Ok,
@@ -29,8 +28,7 @@ private status: string = HttpStatusCode.BadRequest;
         res.send(ResponseBuilder.buildResponse(response));
       } catch (error) {
         console.error(error);
-             res.send(ResponseBuilder.buildResponse({ status: this.status, message: error }));
-
+        res.send(ResponseBuilder.buildResponse({ status: this.status, message: error }));
       }
     }
   );

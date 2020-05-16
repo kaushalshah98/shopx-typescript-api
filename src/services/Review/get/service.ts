@@ -6,10 +6,10 @@ export class Service {
   public async getReviews(productId: string): Promise<any> {
     try {
       const result = await this.repository.getReviews(productId);
-      if (result) {
+      if (result && result.length > 0) {
         return result[0].list as IReview[];
       } else {
-        return null;
+        return result;
       }
     } catch (error) {
       throw error;

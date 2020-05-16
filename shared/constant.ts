@@ -16,4 +16,3 @@ export const CONSTANT = {
   URL: 'couchbase://localhost:8091',
   BUCKET_NAME: 'shopx'
 };
-

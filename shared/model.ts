@@ -17,7 +17,7 @@ export interface IMenu {
 }
 
 export interface IOrder {
-  order: IOrderArray[];
+  orders: IOrderArray[][];
   userid: string;
   type: string;
 }

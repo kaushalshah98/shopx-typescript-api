@@ -8,7 +8,8 @@ export class Service {
       const result = await this.repository.getUserOrder(userId);
       if (result && result.length > 0) {
         return result[0].orders as IOrder;
-      }return result;
+      }
+      return result;
     } catch (error) {
       throw error;
     }

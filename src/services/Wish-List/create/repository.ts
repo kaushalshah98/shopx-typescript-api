@@ -28,7 +28,7 @@ export class Repository {
     try {
       const query = `UPDATE ${CONSTANT.BUCKET_NAME}
       SET ${CONSTANT.WISHLIST_ITEMS} = ARRAY_APPEND( ${CONSTANT.WISHLIST_ITEMS},$1) 
-      WHERE ${CONSTANT.USER_ID} = $1 
+      WHERE ${CONSTANT.USER_ID} = $2 
       AND type = '${CONSTANT.WISHLIST_TYPE}'`;
       return await this._bucket.query(query, [item, userId]);
     } catch (error) {

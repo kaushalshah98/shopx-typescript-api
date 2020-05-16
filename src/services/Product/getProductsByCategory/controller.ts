@@ -8,9 +8,10 @@ import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
 export class Controller {
-private status: string = HttpStatusCode.BadRequest;
+  private status: string = HttpStatusCode.BadRequest;
   private message: string = HttpMessage.emptyMessage;
-  constructor(private service: Service) {}  public getProductByCategory: ApiHandler = app.post(
+  constructor(private service: Service) {}
+  public getProductByCategory: ApiHandler = app.post(
     '/getproducts',
     async (req: Request, res: Response) => {
       try {
@@ -23,8 +24,7 @@ private status: string = HttpStatusCode.BadRequest;
         const innercategory: string = req.body.innercategory;
         const result = await this.service.getProductByCategory(category, innercategory);
         if (result === null) {
-                 res.send(ResponseBuilder.buildResponse({ status: this.status, message: this.message }));
-
+          res.send(ResponseBuilder.buildResponse({ status: this.status, message: this.message }));
           return;
         }
         const response: IApiResponse<IProductItem[]> = {
@@ -34,8 +34,7 @@ private status: string = HttpStatusCode.BadRequest;
         };
         res.send(ResponseBuilder.buildResponse(response));
       } catch (error) {
-             res.send(ResponseBuilder.buildResponse({ status: this.status, message: error }));
-
+        res.send(ResponseBuilder.buildResponse({ status: this.status, message: error }));
       }
     }
   );

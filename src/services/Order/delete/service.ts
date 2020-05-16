@@ -3,10 +3,10 @@ import { Repository } from './repository';
 
 export class Service {
   constructor(private repository: Repository) {}
-  public async deleteOrder(userId: string, order: IOrderArray[]): Promise<any> {
+  public async deleteOrder(userId: string, orders: IOrderArray[][]): Promise<any> {
     try {
       const orderdoc: IOrder = {
-        order,
+        orders,
         userid: userId,
         type: 'ORDER'
       };

@@ -24,7 +24,7 @@ export class Controller {
         const response: IApiResponse<any> = {
           status: HttpStatusCode.Ok,
           result,
-          message: 'Item Already is in List'
+          message: 'This Item is already in list'
         };
         res.send(ResponseBuilder.buildResponse(response));
         return;

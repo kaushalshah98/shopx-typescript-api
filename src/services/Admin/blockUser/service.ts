@@ -6,10 +6,7 @@ export class Service {
   public async blockUser(userid: string, status: boolean): Promise<any> {
     try {
       return new Promise(
-        async (
-          resolve: (value?: any | null) => void,
-          reject: (error?: CouchbaseError) => void
-        ) => {
+        async (resolve: (value?: any | null) => void, reject: (error?: CouchbaseError) => void) => {
           await this.repository
             .blockUser(userid, status)
             .then((result: any) => {

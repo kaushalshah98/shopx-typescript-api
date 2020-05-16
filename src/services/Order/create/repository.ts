@@ -15,13 +15,13 @@ export class Repository {
     }
   }
 
-  public async updateOrder(userId: string, order: IOrderArray[]): Promise<any> {
+  public async updateOrder(userId: string, orders: IOrderArray[]): Promise<any> {
     try {
       const query = `UPDATE ${CONSTANT.BUCKET_NAME}
       SET ${CONSTANT.ORDERS} = ARRAY_APPEND( ${CONSTANT.ORDERS},$1) 
      WHERE ${CONSTANT.USER_ID} = $2 
      AND type = '${CONSTANT.ORDER_TYPE}'`;
-      return await this._bucket.query(query, [order, userId]);
+      return await this._bucket.query(query, [orders, userId]);
     } catch (error) {
       throw error;
     }

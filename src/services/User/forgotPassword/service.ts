@@ -13,7 +13,9 @@ export class Service {
       const message = `Your Password is ${result[0].password}`;
       const subject = `Hello ${username}`;
       return this.sendmail.sendmail(receiver, subject, message, (err: Error | null, res: any) => {
-        if (err) { throw err; }
+        if (err) {
+          throw err;
+        }
       });
     } catch (error) {
       throw error;

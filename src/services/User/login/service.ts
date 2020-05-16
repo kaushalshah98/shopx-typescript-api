@@ -9,7 +9,8 @@ export class Service {
       if (result && result.length > 0) {
         const user: IUser = result.map((data: any) => data.user);
         return user[0];
-      }return result;
+      }
+      return result;
     } catch (error) {
       throw error;
     }

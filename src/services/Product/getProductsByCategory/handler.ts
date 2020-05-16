@@ -12,4 +12,4 @@ const repo: Repository = new Repository(bucket);
 const service: Service = new Service(repo);
 const controller: Controller = new Controller(service);
 
-export const getProductByCategory :ApiHandler = controller.getProductByCategory;
+export const getProductByCategory: ApiHandler = controller.getProductByCategory;

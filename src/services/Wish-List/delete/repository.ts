@@ -9,7 +9,7 @@ export class Repository {
       const wishlistId = 'WISHLIST::' + userId;
       const query = `UPDATE ${CONSTANT.BUCKET_NAME} a USE KEYS $1
       SET a.wishlistitems = ARRAY items FOR items IN a.wishlistitems
-      WHEN items.product_id != $1 END`;
+      WHEN items.product_id != $2 END`;
       return await this._bucket.query(query, [wishlistId, productId]);
     } catch (error) {
       throw error;

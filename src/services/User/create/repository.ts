@@ -1,5 +1,5 @@
 import { IUser } from 'shared/model';
-import uuid from 'uuid';
+import * as uuid from 'uuid';
 import { DBBucket } from '../../../../config/DbBucket';
 export class Repository {
   constructor(private readonly _bucket: DBBucket) {}

@@ -8,24 +8,20 @@ import { ResponseBuilder } from '../../../../shared/response-builder';
 import { Service } from './service';
 
 export class Controller {
-private status: string = HttpStatusCode.BadRequest;
+  private status: string = HttpStatusCode.BadRequest;
   private message: string = HttpMessage.emptyMessage;
-  constructor(private service: Service) {}  public createUser: ApiHandler = app.post('/createuser', async (req: Request, res: Response) => {
+  constructor(private service: Service) {}
+  public createUser: ApiHandler = app.post('/createuser', async (req: Request, res: Response) => {
     try {
       if (req.body && Object.keys(req.body).length <= 0) {
-        res.send(
-          ResponseBuilder.buildResponse({
-            status: HttpStatusCode.BadRequest,
-            message: 'Invalid request (Invalid/Empty Body)'
-          })
-        );
+        this.message = HttpMessage.emptyBody;
+        res.send(ResponseBuilder.buildResponse({ status: this.status, message: this.message }));
         return;
       }
       const userdata: IUser = req.body;
       const result = await this.service.createUser(userdata);
       if (result === null) {
-                res.send(ResponseBuilder.buildResponse({ status: this.status, message: this.message }));
-
+        res.send(ResponseBuilder.buildResponse({ status: this.status, message: this.message }));
         return;
       }
       const response: IApiResponse<any> = {
@@ -35,8 +31,7 @@ private status: string = HttpStatusCode.BadRequest;
       };
       res.send(ResponseBuilder.buildResponse(response));
     } catch (error) {
-            res.send(ResponseBuilder.buildResponse({ status: this.status, message: error }));
-
+      res.send(ResponseBuilder.buildResponse({ status: this.status, message: error }));
     }
   });
 }

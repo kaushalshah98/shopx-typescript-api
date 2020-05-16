@@ -17,7 +17,6 @@ export class Controller {
       const result = await this.service.getSize(userId);
       if (result === null) {
         res.send(ResponseBuilder.buildResponse({ status: this.status, message: this.message }));
-
         return;
       }
       const response: IApiResponse<ICartSize> = {

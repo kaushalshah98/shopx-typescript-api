@@ -7,7 +7,8 @@ export class Service {
       const result = await this.repository.getTheme(userId);
       if (result) {
         return result[0];
-      }return result;
+      }
+      return result;
     } catch (error) {
       throw error;
     }

@@ -32,7 +32,7 @@ export class Controller {
       const responsee: IApiResponse<any> = {
         status: HttpStatusCode.Ok,
         result,
-        message: 'Item Added successfully'
+        message: 'Item is added To Wishlist'
       };
       res.send(ResponseBuilder.buildResponse(responsee));
     } catch (error) {

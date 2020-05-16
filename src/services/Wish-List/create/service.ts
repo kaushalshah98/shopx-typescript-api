@@ -11,13 +11,13 @@ export class Service {
         type: 'WISHLIST'
       };
       const result = await this.repository.checkList(userId);
-      if (result.length <= 0) {
+      if (result.length > 0) {
         const row = await this.repository.checkItem(userId, productId);
         if (row.length <= 0) {
           const item: IWishListArray = { product_id: productId };
           return await this.repository.updateList(userId, item);
         } else {
-          return Promise.resolve(null);
+          return null;
         }
       } else {
         return await this.repository.createList(userId, wishlistdoc);

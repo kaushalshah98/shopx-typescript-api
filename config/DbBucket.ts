@@ -2,7 +2,7 @@ import { CouchbaseError, N1qlQuery } from 'couchbase';
 import { CONSTANT } from '../shared/constant';
 import { Connection } from './connection';
 
-const KEY_VALUE_OPERATION_TIMEOUT = 3000;
+const KEY_VALUE_OPERATION_TIMEOUT = 5000;
 
 export class DBBucket {
   private bucket: any;

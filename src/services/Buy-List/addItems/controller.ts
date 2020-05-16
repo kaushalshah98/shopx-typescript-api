@@ -16,7 +16,7 @@ export class Controller {
     '/addtolist/:userid',
     async (req: Request, res: Response) => {
       try {
-        if (req.body && Object.keys(req.body).length <= 0) {
+        if (!req.body) {
           this.message = HttpMessage.emptyBody;
           res.send(ResponseBuilder.buildResponse({ status: this.status, message: this.message }));
           return;

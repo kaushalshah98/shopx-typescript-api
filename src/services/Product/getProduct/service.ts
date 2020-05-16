@@ -8,9 +8,9 @@ export class Service {
       const result = await this.repository.getProduct(productId);
       if (result && result.length > 0) {
         const product = result.map((data: any) => data.product);
-        return(product[0] as IProductItem);
+        return product[0] as IProductItem;
       } else {
-        return(null);
+        return null;
       }
     } catch (error) {
       throw error;
